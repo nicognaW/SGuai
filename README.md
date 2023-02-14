@@ -1,8 +1,8 @@
 # SGuai
 
+## Basic Usage
 
-Usage:
-```
+```python
 import asyncio
 import time
 
@@ -19,3 +19,13 @@ async def main():
 
 asyncio.run(main())
 ```
+
+## Demos
+
+1. Duty time countdown
+
+```shell
+python ./dutytime_countdown.py
+```
+
+[video demo](https://youtube.com/shorts/_W35yWU2yoM?feature=share)

@@ -28,7 +28,7 @@ class SG:
     @classmethod
     async def discover(cls):
         devices = []
-        for d in await bleak.BleakScanner.discover():
+        for d in await bleak.BleakScanner.discover(timeout=30.0):
             print(d, d.name)
             if d.name in cls.supported_devices:
                 devices.append(d.address)
@@ -38,9 +38,10 @@ class SG:
         if not address:
             addresses = await self.discover()
             if len(addresses):
+                print(f"found addresses: {addresses}")
                 address = addresses[0]
         assert address is not None
-        self.bc = bleak.BleakClient(address)
+        self.bc = bleak.BleakClient(address, timeout=float('INF'))
         await self.bc.connect()
 
     async def send_raw(self, data):
